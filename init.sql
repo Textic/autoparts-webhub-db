@@ -69,12 +69,12 @@ CREATE TABLE appointments (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE RESTRICT,
     FOREIGN KEY (part_id) REFERENCES parts(id) ON DELETE RESTRICT,
-    -- Prevents schedule collisions
-    UNIQUE KEY idx_unique_schedule (appointment_date, appointment_time)
+    -- Index to speed up schedule checks
+    KEY idx_schedule (appointment_date, appointment_time)
 ) ENGINE=InnoDB;
 
 -- Seed default roles
-INSERT INTO roles (name) VALUES ('client'), ('mechanic'), ('administrator');
+INSERT INTO roles (name) VALUES ('client'), ('mechanic'), ('admin');
 
 -- Seed default vehicles
 INSERT INTO vehicles (brand, model, manufacturing_year, engine_type) VALUES
