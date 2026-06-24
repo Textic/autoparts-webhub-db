@@ -186,3 +186,15 @@ INSERT INTO part_compatibilities (part_id, vehicle_id) VALUES
 (15, 9),
 (15, 13),
 (15, 20);
+
+-- 7. System Settings Table
+CREATE TABLE IF NOT EXISTS system_settings (
+    setting_key VARCHAR(100) PRIMARY KEY,
+    setting_value VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NULL
+) ENGINE=InnoDB;
+
+INSERT INTO system_settings (setting_key, setting_value, description) VALUES
+('hourly_appointment_limit', '2', 'Límite máximo de citas permitidas por bloque de hora'),
+('allow_start_time', '09:00', 'Hora de inicio permitida para programar citas'),
+('allow_end_time', '17:30', 'Hora de término permitida para programar citas');
